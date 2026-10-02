@@ -5,18 +5,15 @@ data class Location(
     val longitude: Double,
     val name: String? = null
 ) {
-    
+
+    // Сделал более красивую и эффективную функцию форматированния в строку
     override fun toString(): String {
-        var result = ""
-        result += "Latitude: $latitude, "
-        result += "Longitude: $longitude"
-        name?.let {
-            result += ", Name: $it"
+        return buildString {
+            append("Latitude: $latitude, Longitude: $longitude")
+            name?.let { append(", Name: $it") }
         }
-        return result
     }
-    
-    
+
     override fun equals(other: Any?): Boolean {
         if (other !is Location) return false
         return latitude == other.latitude && longitude == other.longitude
